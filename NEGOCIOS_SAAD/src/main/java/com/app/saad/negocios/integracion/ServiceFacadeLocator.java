@@ -18,7 +18,7 @@ public class ServiceFacadeLocator {
     private static AdoptanteFacade adoptanteFacade;
     private static AnimalesDomesticosFacade animalesDomesticosFacade;
         
-    public AdopcionFacade getAdopcionFacade(){
+    public static AdopcionFacade getAdopcionFacade(){
         if(adopcionFacade == null){
             adopcionFacade = new AdopcionFacade();
             return adopcionFacade;
@@ -27,7 +27,7 @@ public class ServiceFacadeLocator {
         }
     }
     
-    public AdoptanteFacade getAdoptanteFacade(){
+    public static AdoptanteFacade getAdoptanteFacade(){
         if(adoptanteFacade == null){
             adoptanteFacade = new AdoptanteFacade();
             return adoptanteFacade;
@@ -36,7 +36,7 @@ public class ServiceFacadeLocator {
         }
     }
     
-    public AnimalesDomesticosFacade getAnimalesDomesticosFacade(){
+    public static AnimalesDomesticosFacade getAnimalesDomesticosFacade(){
         if(animalesDomesticosFacade == null){
             animalesDomesticosFacade = new AnimalesDomesticosFacade();
             return animalesDomesticosFacade;

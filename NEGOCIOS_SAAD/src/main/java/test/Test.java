@@ -5,7 +5,7 @@
  */
 package test;
 
-import com.app.saad.negocios.facade.AdopcionFacade;
+
 import com.app.saad.negocios.integracion.ServiceFacadeLocator;
 
 /**
@@ -15,8 +15,7 @@ import com.app.saad.negocios.integracion.ServiceFacadeLocator;
 public class Test {
     public static void main(String[] args) {
         int id = 1;
-        AdopcionFacade facade = new AdopcionFacade();
-        facade.generarPDFById(id);
+        ServiceFacadeLocator.getAdopcionFacade().generarPDFById(id);
         
     }
 }
