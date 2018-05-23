@@ -9,7 +9,8 @@
         <module>ENTIDADES_SAAD</module>
         <module>PERSISTENCIA_SAAD</module>
         <module>NEGOCIOS_SAAD</module>
-    </modules>
+    <module>VISTA_SAAD</module>
+  </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
