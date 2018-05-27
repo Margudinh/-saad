@@ -14,8 +14,7 @@ import com.app.saad.negocios.integracion.ServiceFacadeLocator;
  */
 public class Test {
     public static void main(String[] args) {
-        int id = 1;
-        ServiceFacadeLocator.getAdopcionFacade().generarPDFById(id);
+      
         
     }
 }

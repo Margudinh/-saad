@@ -59,30 +59,4 @@ public class AdopcionDelegate {
             return false;
         }
     }
-    
-    public String generarPDFById(int id){
-        Adopcion adopcion = ServiceLocator.getAdopcionDAO().find(id);
-        Document doc = new Document();
-        File file = new File("reporte.pdf");
-        Font font = new Font(Font.FontFamily.COURIER, 12);
-        
-        try{
-            FileOutputStream fos = new FileOutputStream(file);
-            PdfWriter.getInstance(doc, fos);
-            doc.open();
-            
-            doc.add(new Paragraph("Adoptante: " + adopcion.getIdAdoptante().getNombre(),font));
-            doc.add(new Paragraph("Animal Domestico: "+ adopcion.getIdAnimal().getNombre(), font));
-            doc.add(new Paragraph("Fecha: " + adopcion.getFecha().toString(), font));
-            doc.close();
-            System.out.println("pdf creado en: " + file.getAbsolutePath() + "---------");
-            
-            return file.getAbsolutePath();
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
-        
-    }
-    
 }

@@ -40,7 +40,5 @@ public class AdopcionFacade {
         return delegate.modificarAdopcion(adopcion);
     }
     
-    public String generarPDFById(int id){
-        return delegate.generarPDFById(id);
-    }
+   
 }

@@ -33,8 +33,13 @@ public class AdopcionUI implements Serializable{
     public void init(){
         helper = new AdopcionHelper();
         adopciones = helper.findTodasLasAdopciones();
+        
     }
-
+    
+    public void obtenerPDF(int folioAdopcion){
+        helper.obtenerPDF(folioAdopcion);
+    }
+    
     public List<Adopcion> getAdopciones() {
         return adopciones;
     }

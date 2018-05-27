@@ -19,11 +19,17 @@ import org.ocpsoft.rewrite.servlet.config.rule.Join;
  */
 @RewriteConfiguration
 public class ApplicationConfigurationProvider extends HttpConfigurationProvider{
-
+    
+    public ApplicationConfigurationProvider(){
+        
+    }
+    
     @Override
     public Configuration getConfiguration(ServletContext t) {
        return ConfigurationBuilder.begin()
-               .addRule(Join.path("/").to("/index.xhtml"));
+               .addRule(Join.path("/").to("/index.xhtml"))
+               .addRule(Join.path("/adopciones").to("/adopciones.xhtml"))
+               ;
     }
 
     @Override
