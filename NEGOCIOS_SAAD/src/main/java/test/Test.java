@@ -6,6 +6,8 @@
 package test;
 
 
+import com.app.saad.entidades.Adopcion;
+import com.app.saad.integracion.ServiceLocator;
 import com.app.saad.negocios.integracion.ServiceFacadeLocator;
 
 /**
@@ -14,7 +16,9 @@ import com.app.saad.negocios.integracion.ServiceFacadeLocator;
  */
 public class Test {
     public static void main(String[] args) {
-      
+      for(Adopcion adopcion: ServiceFacadeLocator.getAdopcionFacade().findTodasLasAdopciones()){
+            System.out.println(adopcion.getFecha().toString());
+        }
         
     }
 }

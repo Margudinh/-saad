@@ -5,13 +5,13 @@
  */
 package com.app.saad.persistencia.dao;
 
-import com.app.saad.entidades.Adoptante;
+import com.app.saad.entidades.Adoptantes;
 import com.app.saad.persistencia.AbstractDAO;
 
 /**
  *
  * @author Erik
  */
-public class AdoptanteDAO extends AbstractDAO<Integer,Adoptante>{
+public class AdoptanteDAO extends AbstractDAO<Integer,Adoptantes>{
     
 }

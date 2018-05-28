@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      >
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -16,7 +17,7 @@
 
             <p:dataTable var="adopcion" value="#{adopcionUI.adopciones}">
                 <p:column headerText="Folio">
-                    <h:outputText value="#{adopcion.folioAdopcion}" />
+                    <h:outputText value="#{adopcion.folio}" />
                 </p:column>
 
                 <p:column headerText="Fecha">
@@ -24,7 +25,7 @@
                 </p:column>
 
                 <p:column headerText="Adoptante">
-                    <h:outputText value="#{adopcion.idAdoptante.nombre} #{adopcion.idAdoptante.apellidoPaterno}" />
+                    <h:outputText value="#{adopcion.idAdoptante.nombreCompleto}" />
                 </p:column>
 
                 <p:column headerText="Telefono">
@@ -40,8 +41,10 @@
                 </p:column>
                 
                 <p:column headerText="Reporte PDF">
-                    <h:commandButton action="#{adopcionUI.obtenerPDF(adopcion.folioAdopcion)}" value ="Reporte"/>
+                    <h:commandButton action="#{adopcionUI.obtenerPDF(adopcion.folio)}" value ="Reporte"/>
                 </p:column>
+                
+                
             </p:dataTable>
 
         </h:form>

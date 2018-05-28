@@ -16,7 +16,7 @@
 
                 <p:dataTable var="adopcion" value="#{adopcionUI.adopciones}">
                     <p:column headerText="Folio">
-                        <h:outputText value="#{adopcion.folioAdopcion}" />
+                        <h:outputText value="#{adopcion.folio}" />
                     </p:column>
 
                     <p:column headerText="Fecha">
@@ -24,7 +24,7 @@
                     </p:column>
 
                     <p:column headerText="Adoptante">
-                        <h:outputText value="#{adopcion.idAdoptante.nombre} #{adopcion.idAdoptante.apellidoPaterno}" />
+                        <h:outputText value="#{adopcion.idAdoptante.nombreCompleto}"/>
                     </p:column>
 
                     <p:column headerText="Telefono">

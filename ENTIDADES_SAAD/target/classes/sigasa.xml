@@ -24,9 +24,9 @@
         <property name="c3p0.timeout">100</property>
             
         <mapping class="com.app.saad.entidades.AnimalesDomesticos"/>
-        <mapping class="com.app.saad.entidades.DetallesAd"/>
+        
         <mapping class="com.app.saad.entidades.Adopcion"/>
-        <mapping class="com.app.saad.entidades.Adoptante"/>
+        <mapping class="com.app.saad.entidades.Adoptantes"/>
         
         
     </session-factory>

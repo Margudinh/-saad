@@ -13,6 +13,15 @@ import java.io.File;
  */
 public class Test {
     public static void main(String[] args) {
+        String path = Test.class.getClassLoader().getResource(".").getPath();
+        File f = new File(path);
+        do{
+            String parent = f.getParent();
+            f = new File(parent);
+        }while(!"VISTA_SAAD".equals(f.getName()));
+        System.out.println(f.getAbsolutePath());
+        
+        File res = new File(f.getAbsolutePath() + "/src/main/webapp/resources/");
         
     }
 }

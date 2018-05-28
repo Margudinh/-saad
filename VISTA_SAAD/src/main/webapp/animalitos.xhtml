@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+
+    <h:body>
+        <h3 style = "text-align: center"> SAAD </h3> 
+        <h:form enctype="multipart/form-data">
+            <p:dataTable var="animalito" value="#{AnimalitosUI.animales}">
+                <p:column headerText="ID">
+                    <h:outputText value ="#{animalito.idAnimal}" />
+                </p:column>
+                
+                <p:column headerText="Nombre">
+                    <h:outputText value ="#{animalito.nombre}" />
+                </p:column>
+                
+                <p:column headerText="Especie">
+                    <h:outputText value="#{animalito.especie}"/>
+                </p:column>
+                
+                <p:column headerText="Sexo">
+                    <h:outputText value ="#{animalito.sexo}"/>
+                </p:column>
+                
+                <p:column headerText="Imagen"> 
+                    <h:outputText value="#{animalito.urlImagen}" />
+                </p:column>
+                
+                <f:facet name ="footer">
+                    <p:commandButton value ="Registrar Animal Domestico" onclick ="PF('modalRegistro').show()" />
+                </f:facet>
+            </p:dataTable>
+            
+            <p:dialog widgetVar="modalRegistro" modal="true" header="Registrar Animal Domestico">
+                <p:inputText value="#{AnimalitosUI.registroAnimal.nombre}" placeholder ="Nombre: " /> <br></br>
+                <p:inputText value="#{AnimalitosUI.registroAnimal.especie}" placeholder ="Especie:"/> <br></br>
+                <p:inputText value="#{AnimalitosUI.registroAnimal.sexo}" placeholder ="Sexo (m/f):"/> <br></br>
+                <p:inputText value="#{AnimalitosUI.registroAnimal.color}" placeholder ="Color:"/> <br></br>
+                
+                <p:fileUpload mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" skinSimple="true" value ="#{AnimalitosUI.imagen}" label="Imagen: " /> <br></br>
+                <p:fileUpload mode="simple" allowTypes="/(\.|\/)(mp4|ogg)$/" skinSimple="true" value ="#{AnimalitosUI.video}" label="Video: " /> <br></br>
+                <p:commandButton value = "Registrar Animal Domestico" update = "@form" onclick="PF('modalRegistro').hide()"/>
+                
+                
+            </p:dialog>
+        </h:form>
+    </h:body>
+    
+</html>

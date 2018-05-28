@@ -5,7 +5,7 @@
  */
 package com.app.saad.negocios.facade;
 
-import com.app.saad.entidades.Adoptante;
+import com.app.saad.entidades.Adoptantes;
 import com.app.saad.negocios.delegate.AdoptanteDelegate;
 import java.util.List;
 
@@ -20,27 +20,27 @@ public class AdoptanteFacade {
         delegate = new AdoptanteDelegate();
     }
     
-    public List<Adoptante> findTodosLosAdoptantes(){
+    public List<Adoptantes> findTodosLosAdoptantes(){
         return delegate.findTodosLosAdoptantes();
     }
     
-    public Adoptante findAdoptanteByTelefono(String telefono){
+    public Adoptantes findAdoptanteByTelefono(String telefono){
         return delegate.findAdoptanteByTelefono(telefono);
     }
     
-    public Adoptante findAdoptanteByCorreo(String correo){
+    public Adoptantes findAdoptanteByCorreo(String correo){
         return delegate.findAdoptanteByCorreo(correo);
     }
     
-    public boolean eliminarAdoptante(Adoptante adoptante){
+    public boolean eliminarAdoptante(Adoptantes adoptante){
         return delegate.eliminarAdoptante(adoptante);
     }
     
-    public boolean modificarAdoptante(Adoptante adoptante){
+    public boolean modificarAdoptante(Adoptantes adoptante){
         return delegate.modificarAdoptante(adoptante);
     }
     
-    public boolean registrarAdoptante(Adoptante adoptante){
+    public boolean registrarAdoptante(Adoptantes adoptante){
         return delegate.registrarAdoptante(adoptante);
     }
 }

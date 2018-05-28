@@ -33,7 +33,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "AnimalesDomesticos.findByIdAnimal", query = "SELECT a FROM AnimalesDomesticos a WHERE a.idAnimal = :idAnimal")
     , @NamedQuery(name = "AnimalesDomesticos.findByNombre", query = "SELECT a FROM AnimalesDomesticos a WHERE a.nombre = :nombre")
     , @NamedQuery(name = "AnimalesDomesticos.findByEspecie", query = "SELECT a FROM AnimalesDomesticos a WHERE a.especie = :especie")
-    , @NamedQuery(name = "AnimalesDomesticos.findBySexo", query = "SELECT a FROM AnimalesDomesticos a WHERE a.sexo = :sexo")})
+    , @NamedQuery(name = "AnimalesDomesticos.findBySexo", query = "SELECT a FROM AnimalesDomesticos a WHERE a.sexo = :sexo")
+    , @NamedQuery(name = "AnimalesDomesticos.findByUrlImagen", query = "SELECT a FROM AnimalesDomesticos a WHERE a.urlImagen = :urlImagen")
+    , @NamedQuery(name = "AnimalesDomesticos.findByUrlVideo", query = "SELECT a FROM AnimalesDomesticos a WHERE a.urlVideo = :urlVideo")
+    , @NamedQuery(name = "AnimalesDomesticos.findByColor", query = "SELECT a FROM AnimalesDomesticos a WHERE a.color = :color")})
 public class AnimalesDomesticos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,10 +51,15 @@ public class AnimalesDomesticos implements Serializable {
     @Basic(optional = false)
     @Column(name = "especie")
     private String especie;
+    @Basic(optional = false)
     @Column(name = "sexo")
     private String sexo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnimal")
-    private List<DetallesAd> detallesAdList;
+    @Column(name = "url_imagen")
+    private String urlImagen;
+    @Column(name = "url_video")
+    private String urlVideo;
+    @Column(name = "color")
+    private String color;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnimal")
     private List<Adopcion> adopcionList;
 
@@ -62,10 +70,11 @@ public class AnimalesDomesticos implements Serializable {
         this.idAnimal = idAnimal;
     }
 
-    public AnimalesDomesticos(Integer idAnimal, String nombre, String especie) {
+    public AnimalesDomesticos(Integer idAnimal, String nombre, String especie, String sexo) {
         this.idAnimal = idAnimal;
         this.nombre = nombre;
         this.especie = especie;
+        this.sexo = sexo;
     }
 
     public Integer getIdAnimal() {
@@ -100,13 +109,28 @@ public class AnimalesDomesticos implements Serializable {
         this.sexo = sexo;
     }
 
-    @XmlTransient
-    public List<DetallesAd> getDetallesAdList() {
-        return detallesAdList;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public void setDetallesAdList(List<DetallesAd> detallesAdList) {
-        this.detallesAdList = detallesAdList;
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
+    public String getUrlVideo() {
+        return urlVideo;
+    }
+
+    public void setUrlVideo(String urlVideo) {
+        this.urlVideo = urlVideo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     @XmlTransient

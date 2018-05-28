@@ -5,7 +5,7 @@
  */
 package com.app.saad.negocios.delegate;
 
-import com.app.saad.entidades.Adoptante;
+import com.app.saad.entidades.Adoptantes;
 import com.app.saad.integracion.ServiceLocator;
 import java.util.List;
 
@@ -15,19 +15,19 @@ import java.util.List;
  */
 public class AdoptanteDelegate {
     
-    public List<Adoptante> findTodosLosAdoptantes(){
+    public List<Adoptantes> findTodosLosAdoptantes(){
         return ServiceLocator.getAdoptanteDAO().findAll();
     }
     
-    public Adoptante findAdoptanteByTelefono(String telefono){
+    public Adoptantes findAdoptanteByTelefono(String telefono){
         return ServiceLocator.getAdoptanteDAO().findByOneParameterUnique(telefono, "telefono");
     }
     
-    public Adoptante findAdoptanteByCorreo(String correo){
+    public Adoptantes findAdoptanteByCorreo(String correo){
         return ServiceLocator.getAdoptanteDAO().findByOneParameterUnique(correo, "correo");    
     }
     
-    public boolean registrarAdoptante(Adoptante adoptante){
+    public boolean registrarAdoptante(Adoptantes adoptante){
         try {
             ServiceLocator.getAdoptanteDAO().save(adoptante);
             return true;
@@ -37,7 +37,7 @@ public class AdoptanteDelegate {
         }
     }
     
-    public boolean modificarAdoptante(Adoptante adoptante){
+    public boolean modificarAdoptante(Adoptantes adoptante){
         try {
             ServiceLocator.getAdoptanteDAO().update(adoptante);
             return true;
@@ -47,7 +47,7 @@ public class AdoptanteDelegate {
         }
     }
     
-    public boolean eliminarAdoptante(Adoptante adoptante){
+    public boolean eliminarAdoptante(Adoptantes adoptante){
         try {
             ServiceLocator.getAdoptanteDAO().delete(adoptante);
             return true;

@@ -26,17 +26,15 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Erik
  */
 @Entity
-@Table(name = "adoptante")
+@Table(name = "adoptantes")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Adoptante.findAll", query = "SELECT a FROM Adoptante a")
-    , @NamedQuery(name = "Adoptante.findByIdAdoptante", query = "SELECT a FROM Adoptante a WHERE a.idAdoptante = :idAdoptante")
-    , @NamedQuery(name = "Adoptante.findByNombre", query = "SELECT a FROM Adoptante a WHERE a.nombre = :nombre")
-    , @NamedQuery(name = "Adoptante.findByApellidoPaterno", query = "SELECT a FROM Adoptante a WHERE a.apellidoPaterno = :apellidoPaterno")
-    , @NamedQuery(name = "Adoptante.findByApellidoMaterno", query = "SELECT a FROM Adoptante a WHERE a.apellidoMaterno = :apellidoMaterno")
-    , @NamedQuery(name = "Adoptante.findByTelefono", query = "SELECT a FROM Adoptante a WHERE a.telefono = :telefono")
-    , @NamedQuery(name = "Adoptante.findByCorreo", query = "SELECT a FROM Adoptante a WHERE a.correo = :correo")})
-public class Adoptante implements Serializable {
+    @NamedQuery(name = "Adoptantes.findAll", query = "SELECT a FROM Adoptantes a")
+    , @NamedQuery(name = "Adoptantes.findByIdAdoptante", query = "SELECT a FROM Adoptantes a WHERE a.idAdoptante = :idAdoptante")
+    , @NamedQuery(name = "Adoptantes.findByNombreCompleto", query = "SELECT a FROM Adoptantes a WHERE a.nombreCompleto = :nombreCompleto")
+    , @NamedQuery(name = "Adoptantes.findByTelefono", query = "SELECT a FROM Adoptantes a WHERE a.telefono = :telefono")
+    , @NamedQuery(name = "Adoptantes.findByCorreo", query = "SELECT a FROM Adoptantes a WHERE a.correo = :correo")})
+public class Adoptantes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,35 +43,29 @@ public class Adoptante implements Serializable {
     @Column(name = "id_adoptante")
     private Integer idAdoptante;
     @Basic(optional = false)
-    @Column(name = "nombre")
-    private String nombre;
-    @Basic(optional = false)
-    @Column(name = "apellido_paterno")
-    private String apellidoPaterno;
-    @Basic(optional = false)
-    @Column(name = "apellido_materno")
-    private String apellidoMaterno;
+    @Column(name = "nombre_completo")
+    private String nombreCompleto;
     @Basic(optional = false)
     @Column(name = "telefono")
     private String telefono;
+    @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAdoptante")
     private List<Adopcion> adopcionList;
 
-    public Adoptante() {
+    public Adoptantes() {
     }
 
-    public Adoptante(Integer idAdoptante) {
+    public Adoptantes(Integer idAdoptante) {
         this.idAdoptante = idAdoptante;
     }
 
-    public Adoptante(Integer idAdoptante, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono) {
+    public Adoptantes(Integer idAdoptante, String nombreCompleto, String telefono, String correo) {
         this.idAdoptante = idAdoptante;
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
+        this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
+        this.correo = correo;
     }
 
     public Integer getIdAdoptante() {
@@ -84,28 +76,12 @@ public class Adoptante implements Serializable {
         this.idAdoptante = idAdoptante;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getTelefono() {
@@ -143,10 +119,10 @@ public class Adoptante implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Adoptante)) {
+        if (!(object instanceof Adoptantes)) {
             return false;
         }
-        Adoptante other = (Adoptante) object;
+        Adoptantes other = (Adoptantes) object;
         if ((this.idAdoptante == null && other.idAdoptante != null) || (this.idAdoptante != null && !this.idAdoptante.equals(other.idAdoptante))) {
             return false;
         }
@@ -155,7 +131,7 @@ public class Adoptante implements Serializable {
 
     @Override
     public String toString() {
-        return "com.app.saad.entidades.Adoptante[ idAdoptante=" + idAdoptante + " ]";
+        return "com.app.saad.entidades.Adoptantes[ idAdoptante=" + idAdoptante + " ]";
     }
     
 }

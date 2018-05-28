@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Adopcion.findAll", query = "SELECT a FROM Adopcion a")
-    , @NamedQuery(name = "Adopcion.findByFolioAdopcion", query = "SELECT a FROM Adopcion a WHERE a.folioAdopcion = :folioAdopcion")
+    , @NamedQuery(name = "Adopcion.findByFolio", query = "SELECT a FROM Adopcion a WHERE a.folio = :folio")
     , @NamedQuery(name = "Adopcion.findByFecha", query = "SELECT a FROM Adopcion a WHERE a.fecha = :fecha")})
 public class Adopcion implements Serializable {
 
@@ -39,15 +39,15 @@ public class Adopcion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "folio_adopcion")
-    private Integer folioAdopcion;
+    @Column(name = "folio")
+    private Integer folio;
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @JoinColumn(name = "id_adoptante", referencedColumnName = "id_adoptante")
     @ManyToOne(optional = false)
-    private Adoptante idAdoptante;
+    private Adoptantes idAdoptante;
     @JoinColumn(name = "id_animal", referencedColumnName = "id_animal")
     @ManyToOne(optional = false)
     private AnimalesDomesticos idAnimal;
@@ -55,21 +55,21 @@ public class Adopcion implements Serializable {
     public Adopcion() {
     }
 
-    public Adopcion(Integer folioAdopcion) {
-        this.folioAdopcion = folioAdopcion;
+    public Adopcion(Integer folio) {
+        this.folio = folio;
     }
 
-    public Adopcion(Integer folioAdopcion, Date fecha) {
-        this.folioAdopcion = folioAdopcion;
+    public Adopcion(Integer folio, Date fecha) {
+        this.folio = folio;
         this.fecha = fecha;
     }
 
-    public Integer getFolioAdopcion() {
-        return folioAdopcion;
+    public Integer getFolio() {
+        return folio;
     }
 
-    public void setFolioAdopcion(Integer folioAdopcion) {
-        this.folioAdopcion = folioAdopcion;
+    public void setFolio(Integer folio) {
+        this.folio = folio;
     }
 
     public Date getFecha() {
@@ -80,11 +80,11 @@ public class Adopcion implements Serializable {
         this.fecha = fecha;
     }
 
-    public Adoptante getIdAdoptante() {
+    public Adoptantes getIdAdoptante() {
         return idAdoptante;
     }
 
-    public void setIdAdoptante(Adoptante idAdoptante) {
+    public void setIdAdoptante(Adoptantes idAdoptante) {
         this.idAdoptante = idAdoptante;
     }
 
@@ -99,7 +99,7 @@ public class Adopcion implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (folioAdopcion != null ? folioAdopcion.hashCode() : 0);
+        hash += (folio != null ? folio.hashCode() : 0);
         return hash;
     }
 
@@ -110,7 +110,7 @@ public class Adopcion implements Serializable {
             return false;
         }
         Adopcion other = (Adopcion) object;
-        if ((this.folioAdopcion == null && other.folioAdopcion != null) || (this.folioAdopcion != null && !this.folioAdopcion.equals(other.folioAdopcion))) {
+        if ((this.folio == null && other.folio != null) || (this.folio != null && !this.folio.equals(other.folio))) {
             return false;
         }
         return true;
@@ -118,7 +118,7 @@ public class Adopcion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.app.saad.entidades.Adopcion[ folioAdopcion=" + folioAdopcion + " ]";
+        return "com.app.saad.entidades.Adopcion[ folio=" + folio + " ]";
     }
     
 }

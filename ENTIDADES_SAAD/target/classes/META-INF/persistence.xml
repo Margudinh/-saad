@@ -6,6 +6,7 @@
     <class>com.app.saad.entidades.Adopcion</class>
     <class>com.app.saad.entidades.DetallesAd</class>
     <class>com.app.saad.entidades.AnimalesDomesticos</class>
+    <class>com.app.saad.entidades.Adoptantes</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/saad?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

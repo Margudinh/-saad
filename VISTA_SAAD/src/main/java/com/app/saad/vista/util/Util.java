@@ -6,7 +6,7 @@
 package com.app.saad.vista.util;
 
 import com.app.saad.entidades.Adopcion;
-import com.app.saad.integracion.ServiceLocator;
+
 import com.app.saad.negocios.integracion.ServiceFacadeLocator;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
@@ -69,7 +69,7 @@ public class Util {
             PdfWriter.getInstance(doc, fos);
             doc.open();
             
-            doc.add(new Paragraph("Adoptante: " + adopcion.getIdAdoptante().getNombre(),font));
+            doc.add(new Paragraph("Adoptante: " + adopcion.getIdAdoptante().getNombreCompleto(),font));
             doc.add(new Paragraph("Animal Domestico: "+ adopcion.getIdAnimal().getNombre(), font));
             doc.add(new Paragraph("Fecha: " + adopcion.getFecha().toString(), font));
             doc.close();
@@ -80,5 +80,18 @@ public class Util {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public static String getResourcePath(){
+        String path = Util.class.getClassLoader().getResource(".").getPath();
+        File f = new File(path);
+        do{
+            String parent = f.getParent();
+            f = new File(parent);
+        }while(!"VISTA_SAAD".equals(f.getName()));
+        System.out.println(f.getAbsolutePath());
+        
+        File res = new File(f.getAbsolutePath() + "/src/main/webapp/resources/");
+        return res.getAbsolutePath();
     }
 }

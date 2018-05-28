@@ -5,7 +5,9 @@
  */
 package test;
 
-import com.app.saad.entidades.Adoptante;
+import com.app.saad.entidades.Adopcion;
+import com.app.saad.entidades.Adoptantes;
+import com.app.saad.entidades.AnimalesDomesticos;
 import com.app.saad.integracion.ServiceLocator;
 
 /**
@@ -15,6 +17,11 @@ import com.app.saad.integracion.ServiceLocator;
 public class Test {
 
     public static void main(String[] args) {
-    
+        
+        
+        
+        for(Adopcion adopcion: ServiceLocator.getAdopcionDAO().findAll()){
+            System.out.println(adopcion.getFecha().toString());
+        }
     }
 }
