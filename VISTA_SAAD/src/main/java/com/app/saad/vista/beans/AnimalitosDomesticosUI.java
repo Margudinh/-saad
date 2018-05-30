@@ -53,6 +53,15 @@ public class AnimalitosDomesticosUI implements Serializable {
         }
     }
     
+    public void adoptar(AnimalesDomesticos animal){
+        
+        if(helper.adoptar(animal)){
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Se adopto a la mascota", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } 
+            
+    }
+    
     public void toggleRegistro(){
         visibleRegistro = !visibleRegistro;
     }

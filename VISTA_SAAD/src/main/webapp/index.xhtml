@@ -21,6 +21,9 @@
         <div class = "grid">
             <h:form>
 
+                <p:growl id="growl" life="2000"/> 
+                    
+                
                 <p:dataTable var="animales" value="#{AnimalitosUI.animales}">
                     <p:column headerText="Id">
                         <h:outputText value="#{animales.idAnimal}" />
@@ -43,19 +46,21 @@
                     </p:column>
                     
                     <p:column headerText="Deseas adoptarlo?"> 
-                        <p:commandButton value ="Adoptar ahora!" onclick ="PF('DAdopcion').show()" />
+                        <p:commandButton value ="Adoptar ahora!" update="growl" actionListener="#{AnimalitoUI.adoptar(animales)}" />
                     </p:column>
                     
                 </p:dataTable>
 
-            <p:dialog widgetVar="DAdopcion" modal="true" header="Registro de adopcion">
+                <!--
+                <p:dialog widgetVar="DAdopcion" modal="true" header="Registro de adopcion">
 
+                <h:outputText value="Seguro que quieres adoptar a"  />
 
                 <p:commandButton value = "Terminar registro" update = "@form" onclick="PF('DAdopcion').hide()"/>
                 
                 
             </p:dialog>
-                
+                -->
             </h:form>
         </div>
     </h:body>

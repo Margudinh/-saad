@@ -5,6 +5,8 @@
  */
 package com.app.saad.vista.helpers;
 
+import com.app.saad.entidades.Adopcion;
+import com.app.saad.entidades.Adoptantes;
 import com.app.saad.entidades.AnimalesDomesticos;
 import com.app.saad.negocios.integracion.ServiceFacadeLocator;
 import com.app.saad.vista.util.Util;
@@ -64,5 +66,16 @@ public class AnimalitosHelper implements Serializable{
     
     public boolean modificarAnimalDomestico(AnimalesDomesticos animalito){
         return ServiceFacadeLocator.getAnimalesDomesticosFacade().modificarAnimalDomestico(animalito);
+    }
+    
+    public boolean adoptar(AnimalesDomesticos animalito){
+        Adopcion adopcion = new Adopcion();
+        String correo = Util.getSessionMap().get("user").toString();
+        Adoptantes adoptante = ServiceFacadeLocator.getAdoptanteFacade().findAdoptanteByCorreo(correo);
+        adopcion.setFecha(new Date());
+        adopcion.setIdAdoptante(adoptante);
+        adopcion.setIdAnimal(animalito);
+        
+        return ServiceFacadeLocator.getAdopcionFacade().registrarAdopcion(adopcion);
     }
 }
