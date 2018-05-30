@@ -24,6 +24,10 @@ public class AdoptanteFacade {
         return delegate.findTodosLosAdoptantes();
     }
     
+    public boolean login(String correo, String password){
+        return delegate.login(correo, password);
+    }
+    
     public Adoptantes findAdoptanteByTelefono(String telefono){
         return delegate.findAdoptanteByTelefono(telefono);
     }

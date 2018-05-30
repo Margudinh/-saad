@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
             .imagenAD{
                 width: 75px;
@@ -22,7 +22,8 @@
     </h:head>
 
     <h:body>
-        <h3 style = "text-align: center"> SAAD </h3> 
+        <h3 style = "text-align: center"> SAAD </h3>
+        
         <h:form enctype="multipart/form-data">
             <h:panelGrid class ="grid-registro" rendered = "#{AnimalitosUI.visibleRegistro}">
                 <p:inputText value="#{AnimalitosUI.registroAnimal.nombre}" placeholder ="Nombre: " /> 

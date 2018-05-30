@@ -27,6 +27,11 @@ public class AdoptanteDelegate {
         return ServiceLocator.getAdoptanteDAO().findByOneParameterUnique(correo, "correo");    
     }
     
+    public boolean login(String correo, String password){
+        Adoptantes adoptante = ServiceLocator.getAdoptanteDAO().findByOneParameterUnique(correo, "correo");
+        return adoptante.getPassword().equals(password);
+    }
+    
     public boolean registrarAdoptante(Adoptantes adoptante){
         try {
             ServiceLocator.getAdoptanteDAO().save(adoptante);

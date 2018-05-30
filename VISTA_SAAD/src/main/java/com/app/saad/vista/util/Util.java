@@ -20,9 +20,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -30,6 +32,15 @@ import javax.imageio.ImageIO;
  */
 public class Util {
     
+    public static Map<String, Object> getSessionMap(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        return context.getExternalContext().getSessionMap();
+    }
+    
+    public static void redireccionar(String path)throws IOException{
+        HttpServletRequest reqt = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        FacesContext.getCurrentInstance().getExternalContext().redirect(reqt.getContextPath() + path);
+    }
     
     public static void descargar(int folio) throws IOException{
         File f = generarReportePDF(folio);

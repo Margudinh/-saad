@@ -8,38 +8,54 @@
 
     <h:head>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        
+        <style>
+            .imagenAD{
+                width: 75px;
+                height: 75px;
+            }
+        </style>
     </h:head>
 
     <h:body>
         <div class = "grid">
             <h:form>
 
-                <p:dataTable var="adopcion" value="#{adopcionUI.adopciones}">
-                    <p:column headerText="Folio">
-                        <h:outputText value="#{adopcion.folio}" />
+                <p:dataTable var="animales" value="#{AnimalitosUI.animales}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{animales.idAnimal}" />
                     </p:column>
 
-                    <p:column headerText="Fecha">
-                        <h:outputText value="#{adopcion.fecha}" />
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{animales.nombre}" />
                     </p:column>
 
-                    <p:column headerText="Adoptante">
-                        <h:outputText value="#{adopcion.idAdoptante.nombreCompleto}"/>
+                    <p:column headerText="Especie">
+                        <h:outputText value="#{animales.especie}"/>
                     </p:column>
 
-                    <p:column headerText="Telefono">
-                        <h:outputText value="#{adopcion.idAdoptante.telefono}" />
+                    <p:column headerText="Sexo">
+                        <h:outputText value="#{animales.sexo}" />
                     </p:column>
 
-                    <p:column headerText="ID Animal Domestico">
-                        <h:outputText value="#{adopcion.idAnimal.idAnimal}" />
+                    <p:column headerText="FOTO">
+                       <h:graphicImage class ="imagenAD" name="img/#{animales.urlImagen}" />
                     </p:column>
-
-                    <p:column headerText="Animal Domestico">
-                        <h:outputText value="#{adopcion.idAnimal.nombre}" />
+                    
+                    <p:column headerText="Deseas adoptarlo?"> 
+                        <p:commandButton value ="Adoptar ahora!" onclick ="PF('DAdopcion').show()" />
                     </p:column>
+                    
                 </p:dataTable>
 
+            <p:dialog widgetVar="DAdopcion" modal="true" header="Registro de adopcion">
+
+
+                <p:commandButton value = "Terminar registro" update = "@form" onclick="PF('DAdopcion').hide()"/>
+                
+                
+            </p:dialog>
+                
             </h:form>
         </div>
     </h:body>

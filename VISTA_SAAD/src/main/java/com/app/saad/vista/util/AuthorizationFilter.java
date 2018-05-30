@@ -13,6 +13,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +35,31 @@ public class AuthorizationFilter implements Filter{
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-       chain.doFilter(request, response);
+       //chain.doFilter(request, response);
+       try{
+            HttpServletRequest httpreq = (HttpServletRequest) request;
+            HttpServletResponse httpres = (HttpServletResponse) response;
+            HttpSession ses = httpreq.getSession(false);
+            String reqURI = httpreq.getRequestURI();
+
+            //si hay alguien logeado
+            if(reqURI.contains("/login") && (ses != null && ses.getAttribute("user") != null)){
+                //TODO: verificar que tipo de ususario es para redirigirlo respectivamente
+                httpres.sendRedirect("/VISTA_SAAD/");
+            }
+            else if(reqURI.contains("/login") || 
+                    (ses != null && ses.getAttribute("user") != null)||
+                    reqURI.contains("/public/") ||
+                    reqURI.contains("javax.faces.resource"))
+            {    
+                chain.doFilter(request, response);
+            }else{
+                httpres.sendRedirect("/VISTA_SAAD/login");
+            }
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+       
     }
 
     @Override
