@@ -2,14 +2,15 @@ package com.app.saad.vista.beans;
 
 import com.app.saad.entidades.AnimalesDomesticos;
 import com.app.saad.vista.helpers.AnimalitosHelper;
-import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.event.CellEditEvent;
 
 /**
  *
@@ -17,23 +18,52 @@ import org.primefaces.model.UploadedFile;
  */
 @ManagedBean(name = "AnimalitosUI")
 @ViewScoped
+public class AnimalitosDomesticosUI implements Serializable {
 
-public class AnimalitosDomesticosUI implements Serializable{
-    
     private List<AnimalesDomesticos> animales;
-    private AnimalesDomesticos registroAnimal;
+    private AnimalesDomesticos registroAnimal,selectedAnimal;
     private AnimalitosHelper helper;
-    private UploadedFile video, imagen;
-    
-    public AnimalitosDomesticosUI()
-    {
+    private Part imagen;
+    private boolean visibleRegistro;
+
+    public AnimalitosDomesticosUI() {
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         helper = new AnimalitosHelper();
         animales = helper.findAnimalesDomesticosDisponibles();
         registroAnimal = new AnimalesDomesticos();
+        visibleRegistro = false;
+
+    }
+
+    public void registrarAnimal() {
+        if (registroAnimal != null) {
+            helper.registrarAnimalDomestico(registroAnimal,imagen);
+            animales = helper.findAnimalesDomesticosDisponibles();
+        }
+        visibleRegistro = !visibleRegistro;
+    }
+    
+    public void eliminarAD(){
+        if(selectedAnimal != null){
+            helper.eliminarAnimalDomestico(selectedAnimal);
+            animales.remove(selectedAnimal);
+        }
+    }
+    
+    public void toggleRegistro(){
+        visibleRegistro = !visibleRegistro;
+    }
+    
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            helper.modificarAnimalDomestico(selectedAnimal);
+        }
     }
 
     public List<AnimalesDomesticos> getAnimales() {
@@ -52,23 +82,31 @@ public class AnimalitosDomesticosUI implements Serializable{
         this.registroAnimal = registroAnimal;
     }
 
-    public UploadedFile getVideo() {
-        return video;
-    }
 
-    public void setVideo(UploadedFile video) {
-        this.video = video;
-    }
-
-    public UploadedFile getImagen() {
+    public Part getImagen() {
         return imagen;
     }
 
-    public void setImagen(UploadedFile imagen) {
+    public void setImagen(Part imagen) {
         this.imagen = imagen;
+    }
+    
+    public void setVisibleRegistro(boolean visibleRegistro){
+        this.visibleRegistro = visibleRegistro;
+    }
+    
+    public boolean getVisibleRegistro(){
+        return visibleRegistro;
+    }
+
+    public AnimalesDomesticos getSelectedAnimal() {
+        return selectedAnimal;
+    }
+
+    public void setSelectedAnimal(AnimalesDomesticos selectedAnimal) {
+        this.selectedAnimal = selectedAnimal;
     }
     
     
 
-    
 }

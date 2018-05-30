@@ -20,8 +20,8 @@ public class Test {
         
         
         
-        for(Adopcion adopcion: ServiceLocator.getAdopcionDAO().findAll()){
-            System.out.println(adopcion.getFecha().toString());
+        for(Adoptantes adoptante: ServiceLocator.getAdoptanteDAO().findAll()){
+            System.out.println(adoptante.getPassword());
         }
     }
 }

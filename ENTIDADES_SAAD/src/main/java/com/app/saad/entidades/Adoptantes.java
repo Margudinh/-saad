@@ -49,6 +49,9 @@ public class Adoptantes implements Serializable {
     @Column(name = "telefono")
     private String telefono;
     @Basic(optional = false)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAdoptante")
@@ -61,11 +64,12 @@ public class Adoptantes implements Serializable {
         this.idAdoptante = idAdoptante;
     }
 
-    public Adoptantes(Integer idAdoptante, String nombreCompleto, String telefono, String correo) {
+    public Adoptantes(Integer idAdoptante, String nombreCompleto, String telefono, String correo, String password) {
         this.idAdoptante = idAdoptante;
         this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
         this.correo = correo;
+        this.password = password;
     }
 
     public Integer getIdAdoptante() {
@@ -100,6 +104,16 @@ public class Adoptantes implements Serializable {
         this.correo = correo;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
+    
     @XmlTransient
     public List<Adopcion> getAdopcionList() {
         return adopcionList;
