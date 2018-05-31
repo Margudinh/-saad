@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
@@ -17,14 +18,14 @@ import org.primefaces.event.CellEditEvent;
  * @author richy
  */
 @ManagedBean(name = "AnimalitosUI")
-@ViewScoped
+@SessionScoped
 public class AnimalitosDomesticosUI implements Serializable {
 
     private List<AnimalesDomesticos> animales;
     private AnimalesDomesticos registroAnimal,selectedAnimal;
     private AnimalitosHelper helper;
     private Part imagen;
-    private boolean visibleRegistro;
+    
 
     public AnimalitosDomesticosUI() {
     }
@@ -34,16 +35,16 @@ public class AnimalitosDomesticosUI implements Serializable {
         helper = new AnimalitosHelper();
         animales = helper.findAnimalesDomesticosDisponibles();
         registroAnimal = new AnimalesDomesticos();
-        visibleRegistro = false;
-
+       
     }
 
     public void registrarAnimal() {
+        System.out.println("porfa dime que registroAnimal no es nulo");
         if (registroAnimal != null) {
             helper.registrarAnimalDomestico(registroAnimal,imagen);
             animales = helper.findAnimalesDomesticosDisponibles();
         }
-        visibleRegistro = !visibleRegistro;
+       
     }
     
     public void eliminarAD(){
@@ -62,9 +63,7 @@ public class AnimalitosDomesticosUI implements Serializable {
             
     }
     
-    public void toggleRegistro(){
-        visibleRegistro = !visibleRegistro;
-    }
+    
     
     public void onCellEdit(CellEditEvent event) {
         Object oldValue = event.getOldValue();
@@ -100,13 +99,6 @@ public class AnimalitosDomesticosUI implements Serializable {
         this.imagen = imagen;
     }
     
-    public void setVisibleRegistro(boolean visibleRegistro){
-        this.visibleRegistro = visibleRegistro;
-    }
-    
-    public boolean getVisibleRegistro(){
-        return visibleRegistro;
-    }
 
     public AnimalesDomesticos getSelectedAnimal() {
         return selectedAnimal;

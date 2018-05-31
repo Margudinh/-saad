@@ -15,13 +15,15 @@
                 height: 75px;
             }
         </style>
+        
+        
     </h:head>
 
     <h:body>
         <div class = "grid">
-            <h:form>
+            <h:form id = "form">
 
-                <p:growl id="growl" life="2000"/> 
+                <p:growl id="growl" life="2000" showDetail="true"/> 
                     
                 
                 <p:dataTable var="animales" value="#{AnimalitosUI.animales}">
@@ -46,7 +48,7 @@
                     </p:column>
                     
                     <p:column headerText="Deseas adoptarlo?"> 
-                        <p:commandButton value ="Adoptar ahora!" update="growl" actionListener="#{AnimalitoUI.adoptar(animales)}" />
+                        <p:commandButton value ="Adoptar ahora!" update=":form:growl" actionListener="#{AnimalitosUI.adoptar(animales)}" />
                     </p:column>
                     
                 </p:dataTable>

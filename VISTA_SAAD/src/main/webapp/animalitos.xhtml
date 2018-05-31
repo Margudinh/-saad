@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-          
+
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
@@ -13,98 +13,108 @@
                 width: 75px;
                 height: 75px;
             }
-            
+
             .grid-registro{
                 margin: 0 auto;
                 text-align: center;
             }
         </style>
+
+
     </h:head>
 
     <h:body>
         <h3 style = "text-align: center"> SAAD </h3>
-        
+        <p><span class = "glyphicon glyphicon-user"></span> #{sesionUI.usuarioEnSesion}</p> 
         <h:form enctype="multipart/form-data">
-            <h:panelGrid class ="grid-registro" rendered = "#{AnimalitosUI.visibleRegistro}">
-                <p:inputText value="#{AnimalitosUI.registroAnimal.nombre}" placeholder ="Nombre: " /> 
-                <p:inputText value="#{AnimalitosUI.registroAnimal.especie}" placeholder ="Especie:"/> 
-                <p:inputText value="#{AnimalitosUI.registroAnimal.sexo}" placeholder ="Sexo (m/f):"/> 
-                <p:inputText value="#{AnimalitosUI.registroAnimal.color}" placeholder ="Color:"/> 
-                
-                <label>Imagen: </label>
-                <h:inputFile value ="#{AnimalitosUI.imagen}"  />
-                
-                <p:commandButton ajax="false" value = "Registrar Animal Domestico"  action="#{AnimalitosUI.registrarAnimal()}" />
-                
-            </h:panelGrid>
             
-            <p:dataTable stickyHeader="true" var="animalito" editable ="true" editMode="cell" widgetVar="cellAD" value="#{AnimalitosUI.animales}" rowKey="#{animalito.idAnimal}" selection="#{AnimalitosUI.selectedAnimal}" >
-                        
-               <p:ajax event="cellEdit" listener="#{AnimalitosUI.onCellEdit}" />
+            
+            <p:panel id="toggleable" collapsed="true" header="Registrar Animal Domestico" toggleable="true" toggleSpeed="500"  widgetVar="panel" style="margin-bottom:20px">
+                <h:panelGrid>
+                    <p:inputText value="#{AnimalitosUI.registroAnimal.nombre}" placeholder ="Nombre: " /> 
+                    <p:inputText value="#{AnimalitosUI.registroAnimal.especie}" placeholder ="Especie:"/> 
+                    <p:inputText value="#{AnimalitosUI.registroAnimal.sexo}" placeholder ="Sexo (m/f):"/> 
+                    <p:inputText value="#{AnimalitosUI.registroAnimal.color}" placeholder ="Color:"/> 
+
+                    <label>Imagen: </label>
+                    <h:inputFile value ="#{AnimalitosUI.imagen}"  />
+
+                    <p:commandButton ajax = "false" value ="Adoptar ahora!" update="@form" action="#{AnimalitosUI.registrarAnimal}" />
+                </h:panelGrid>
+
+                
+            </p:panel>
+
+
+            <p:dataTable  var="animalito" editable ="true" editMode="cell" widgetVar="cellAD" value="#{AnimalitosUI.animales}" rowKey="#{animalito.idAnimal}" selection="#{AnimalitosUI.selectedAnimal}" >
+
+                <p:ajax event="cellEdit" listener="#{AnimalitosUI.onCellEdit}" />
                 <f:facet name ="header" >
                     Animales Domesticos <br></br>
-                    <h:commandButton value ="Registrar" action ="#{AnimalitosUI.toggleRegistro()}" >
-                    </h:commandButton>
                     
-                    <h:commandButton value ="Eliminar" action ="#{AnimalitosUI.eliminarAD()}" >
-                    </h:commandButton>
+
+                    <p:commandButton icon ="ui ui-icon-trash" value ="Eliminar" action ="#{AnimalitosUI.eliminarAD()}" >
+                    </p:commandButton>
 
                 </f:facet>
-                
-               
-               <p:column selectionMode = "single">
-                   
-               </p:column>
+
+
+                <p:column selectionMode = "single">
+
+                </p:column>
                 <p:column headerText="ID">
                     <h:outputText value ="#{animalito.idAnimal}" />
                 </p:column>
-                
+
                 <p:column headerText="Nombre">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value ="#{animalito.nombre}" />
                         </f:facet>
-                        
+
                         <f:facet name ="input">
                             <h:inputText value ="#{animalito.nombre}"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-                
+
                 <p:column headerText="Especie">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value ="#{animalito.especie}" />
                         </f:facet>
-                        
+
                         <f:facet name ="input">
                             <h:inputText value ="#{animalito.especie}"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-                
+
                 <p:column headerText="Sexo">
                     <p:cellEditor>
                         <f:facet name="output">
                             <h:outputText value ="#{animalito.sexo}" />
                         </f:facet>
-                        
+
                         <f:facet name ="input">
                             <h:inputText value ="#{animalito.sexo}"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-                
+
                 <p:column headerText="Imagen">
                     <h:graphicImage class ="imagenAD" name ="img/#{animalito.urlImagen}"  />
                 </p:column>
-                
-              
-               
+
+
+
             </p:dataTable>
-            
-            
+
+
         </h:form>
+
+
+
     </h:body>
-    
+
 </html>
