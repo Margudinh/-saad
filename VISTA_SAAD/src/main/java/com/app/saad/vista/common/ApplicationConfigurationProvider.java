@@ -31,6 +31,8 @@ public class ApplicationConfigurationProvider extends HttpConfigurationProvider{
                .addRule(Join.path("/adopciones").to("/adopciones.xhtml"))
                .addRule(Join.path("/login").to("/login.xhtml"))
                .addRule(Join.path("/animalitos").to("/animalitos.xhtml"))
+               .addRule(Join.path("/registroad").to("/registroad.xhtml"))
+               .addRule(Join.path("/adoptantes").to("adoptantes.xhtml"))
                ;
     }
 

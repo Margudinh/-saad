@@ -18,6 +18,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.Part;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -49,6 +50,26 @@ public class AnimalitosHelper implements Serializable{
         System.out.println("animalito domestico UwU -------");
         System.out.println("urlImagen: "+ animalito.getUrlImagen());
         System.out.println("urlVideo " + animalito.getUrlVideo());
+        return ServiceFacadeLocator.getAnimalesDomesticosFacade().registrarAnimalDomestico(animalito);
+    }
+    
+    public boolean registrarAnimalDomestico(AnimalesDomesticos animalito, UploadedFile imagen){
+        if(imagen != null){
+            String fileName = new Date().getTime()+"-"+imagen.getFileName();
+            fileName = fileName.replace(" ", "_");
+            String directory = Util.getResourcePath() +"/img/";
+            File f = new File(directory + fileName);
+            try{
+                Files.copy(imagen.getInputstream(), f.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                animalito.setUrlImagen(fileName);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        System.out.println("animalito domestico UwU -------");
+        System.out.println("urlImagen: "+ animalito.getUrlImagen());
+        
+       
         return ServiceFacadeLocator.getAnimalesDomesticosFacade().registrarAnimalDomestico(animalito);
     }
     

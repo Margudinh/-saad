@@ -44,8 +44,11 @@ public class AuthorizationFilter implements Filter{
 
             //si hay alguien logeado
             if(reqURI.contains("/login") && (ses != null && ses.getAttribute("user") != null)){
-                //TODO: verificar que tipo de ususario es para redirigirlo respectivamente
-                httpres.sendRedirect("/VISTA_SAAD/");
+                if(ses.getAttribute("user").toString().equals("admin")){
+                    httpres.sendRedirect("/VISTA_SAAD/animalitos");
+                }else{
+                    httpres.sendRedirect("/VISTA_SAAD/");
+                }
             }
             else if(reqURI.contains("/login") || 
                     (ses != null && ses.getAttribute("user") != null)||

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .imagenAD{
+                width: 75px;
+                height: 75px;
+            }
+
+            .center{
+                float:none;
+                margin: 0 auto;
+                text-align: center;
+                
+            }
+        </style>
+
+
+    </h:head>
+
+    <h:body>
+        <h3 style = "text-align: center"> SAAD </h3>
+        
+        <h:form id ="register-form" enctype="multipart/form-data">
+            
+            <nav class ="navbar navbar-default">
+                <div class ="container-fluid">
+                    <div class ="navbar-header">
+                        <div class="navbar-brand"><span class = "glyphicon glyphicon-user"> </span> #{sesionUI.usuarioEnSesion}</div>
+                    </div>
+                    <ul class = "nav navbar-nav">
+                        <li class = "active"><a href = "registroad" >Registro de Animales Domesticos</a></li>
+                        <li><a href = "animalitos" >Consulta de Animales Domesticos</a></li>
+                        <li><a href = "adopciones" >Reportes de adopciones</a></li>
+                        <li><a href = "adoptantes" >Consulta de adoptantes</a></li>
+                        
+                    </ul>
+                    
+                </div>
+                
+            </nav>    
+            
+            <div class = "panel panel-default col-md-6 col-sm-12 center">
+                <div class = "panel-title" ><h4>Registrar Animal Domestico</h4></div>
+                <div class="panel-body">
+                    
+                        <p:inputText class="form-control" value="#{registroAD.registro.nombre}" placeholder="Nombre"/> 
+                        <p:inputText class="form-control" value="#{registroAD.registro.especie}" placeholder= "Especie"/> 
+                        <p:inputText class="form-control" value="#{registroAD.registro.sexo}" placeholder="Sexo (m/f):"/> 
+                        <p:inputText class="form-control" value="#{registroAD.registro.color}" placeholder="Color:"/> 
+                        <label>Imagen: </label>
+                        <p:fileUpload  value ="#{registroAD.imagen}" mode="simple" skinSimple="true"/>
+                        <p:growl id="growl" showDetail="true" />
+                        <p:commandButton  update="growl" value ="Registrar" actionListener="#{registroAD.upload}" ajax="false"/>
+
+                   
+                </div>
+            </div>
+
+        </h:form>
+    </h:body>
+</html>
+

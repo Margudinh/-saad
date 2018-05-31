@@ -27,9 +27,8 @@
         <h3 style = "text-align: center"> SAAD </h3>
         
         
-        <h:form id = "form" >
-            <p:growl id="growl" showDetail="true"/>
-            
+        <h:form id = "form">
+            <p:growl id ="growl" showDetail="true"/>
             <nav class ="navbar navbar-default">
                 <div class ="container-fluid">
                     <div class ="navbar-header">
@@ -37,10 +36,9 @@
                     </div>
                     <ul class = "nav navbar-nav">
                         <li><a href = "registroad" >Registro de Animales Domesticos</a></li>
-                        <li class = "active"><a href = "animalitos" >Consulta de Animales Domesticos</a></li>
+                        <li><a href = "animalitos" >Consulta de Animales Domesticos</a></li>
                         <li><a href = "adopciones" >Reportes de adopciones</a></li>
-                        <li><a href = "adoptantes" >Consulta de adoptantes</a></li>
-                        
+                        <li class = "active"><a href = "adoptantes" >Consulta de adoptantes</a></li>
                         
                     </ul>
                     
@@ -48,14 +46,14 @@
                 
             </nav>
 
-            <p:dataTable id ="cellAD"  var="animalito" editable ="true" editMode="cell" widgetVar="cellAD" value="#{AnimalitosUI.animales}" rowKey="#{animalito.idAnimal}" selection="#{AnimalitosUI.selectedAnimal}" >
+            <p:dataTable id="cellAD" var="adoptante" editable ="true" editMode="cell" widgetVar="cellAD" value="#{adoptanteUI.listaDeAdoptantes}" rowKey="#{adoptante.idAdoptante}" selection="#{adoptanteUI.selectedAdoptantes}" >
 
-                <p:ajax event="cellEdit" listener="#{AnimalitosUI.onCellEdit}" update=":form:growl" />
+                <p:ajax event="cellEdit" listener="#{adoptanteUI.onCellEdit}" update =":form:growl" />
                 <f:facet name ="header" >
-                    Animales Domesticos <br></br>
+                    Adoptantes <br></br>
 
 
-                    <p:commandButton icon ="ui ui-icon-trash" value ="Eliminar" action ="#{AnimalitosUI.eliminarAD()}" >
+                    <p:commandButton icon ="ui ui-icon-trash" value ="Eliminar" update =":form" action ="#{adoptanteUI.eliminarAdoptante()}" >
                     </p:commandButton>
 
                 </f:facet>
@@ -65,54 +63,50 @@
 
                 </p:column>
                 <p:column headerText="ID">
-                    <h:outputText value ="#{animalito.idAnimal}" />
+                    <h:outputText value ="#{adoptante.idAdoptante}" />
                 </p:column>
 
-                <p:column headerText="Nombre">
+                <p:column headerText="Nombre:">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value ="#{animalito.nombre}" />
+                            <h:outputText value ="#{adoptante.nombreCompleto}" />
                         </f:facet>
 
                         <f:facet name ="input">
-                            <p:inputText value ="#{animalito.nombre}"/>
+                            <p:inputText value ="#{adoptante.nombreCompleto}"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Especie">
+                <p:column headerText = "Telefono:">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value ="#{animalito.especie}" />
+                            <h:outputText value ="#{adoptante.telefono}" />
                         </f:facet>
 
                         <f:facet name ="input">
-                            <p:inputText value ="#{animalito.especie}"/>
+                            <p:inputText value ="#{adoptante.telefono}"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Sexo">
+                <p:column headerText="Correo:">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value ="#{animalito.sexo}" />
+                            <h:outputText value ="#{adoptante.correo}" />
                         </f:facet>
 
                         <f:facet name ="input">
-                            <p:inputText value ="#{animalito.sexo}"/>
+                            <p:inputText value ="#{adoptante.correo}"/>
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
 
-                <p:column headerText="Imagen">
-                    <h:graphicImage class ="imagenAD" name ="img/#{animalito.urlImagen}"  />
-                </p:column>
                 
                 <p:contextMenu for="cellAD" widgetVar="cMenu">   
                     <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellAD').showCellEditor();return false;"/>  
                     <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
                 </p:contextMenu> 
-
 
             </p:dataTable>
 

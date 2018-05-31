@@ -8,12 +8,30 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </h:head>
 
     <h:body>
         <h3 style = "text-align: center"> SAAD </h3> 
         <h:form>
+            
+            <nav class ="navbar navbar-default">
+                <div class ="container-fluid">
+                    <div class ="navbar-header">
+                        <div class="navbar-brand"><span class = "glyphicon glyphicon-user"> </span> #{sesionUI.usuarioEnSesion}</div>
+                    </div>
+                    <ul class = "nav navbar-nav">
+                        <li><a href = "registroad" >Registro de Animales Domesticos</a></li>
+                        <li><a href = "animalitos" >Consulta de Animales Domesticos</a></li>
+                        <li class = "active"><a href = "adopciones" >Reportes de adopciones</a></li>
+                        <li><a href = "adoptantes" >Consulta de adoptantes</a></li>
+                        
+                        
+                    </ul>
+                    
+                </div>
+                
+            </nav>
 
             <p:dataTable var="adopcion" value="#{adopcionUI.adopciones}">
                 <p:column headerText="Folio">
@@ -41,7 +59,9 @@
                 </p:column>
                 
                 <p:column headerText="Reporte PDF">
-                    <h:commandButton action="#{adopcionUI.obtenerPDF(adopcion.folio)}" value ="Reporte"/>
+                    <h:commandButton action="#{adopcionUI.obtenerPDF(adopcion.folio)}" value = "Descargar">
+                      
+                    </h:commandButton>
                 </p:column>
                 
                 
