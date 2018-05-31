@@ -42,21 +42,33 @@ public class AuthorizationFilter implements Filter{
             HttpSession ses = httpreq.getSession(false);
             String reqURI = httpreq.getRequestURI();
 
-            //si hay alguien logeado
-            if(reqURI.contains("/login") && (ses != null && ses.getAttribute("user") != null)){
-                if(ses.getAttribute("user").toString().equals("admin")){
+            if(!reqURI.contains("/login")&& (ses == null)){
+                httpres.sendRedirect("/VISTA_SAAD/login");
+            }
+            else if(reqURI.contains("/login") && (ses != null && ses.getAttribute("user") != null)){
+                if(Util.getSessionMap().get("user").toString().equals("admin")){
                     httpres.sendRedirect("/VISTA_SAAD/animalitos");
                 }else{
-                    httpres.sendRedirect("/VISTA_SAAD/");
+                    httpres.sendRedirect("/VISTA_SAAD/home");
                 }
+            
             }
+            
             else if(reqURI.contains("/login") || 
                     (ses != null && ses.getAttribute("user") != null)||
                     reqURI.contains("/public/") ||
                     reqURI.contains("javax.faces.resource"))
             {    
                 chain.doFilter(request, response);
-            }else{
+            }
+            else if(reqURI.contains("/home") && Util.getSessionMap().get("user").toString().equals("admin")){
+                httpres.sendRedirect("/VISTA_SAAD/animalitos");
+                //si el usuario no es admin y quiere entrar a paginas de admin
+            }else if((!reqURI.contains("/home") && !Util.getSessionMap().get("user").toString().equals("admin") && (ses != null && ses.getAttribute("user") != null))){
+                httpres.sendRedirect("/VISTA_SAAD/home");
+            }
+            
+            else{
                 httpres.sendRedirect("/VISTA_SAAD/login");
             }
        }catch(Exception e){
